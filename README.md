@@ -10,13 +10,13 @@ Quick installation
 `docker build --rm -t lamp .` until the build succeeds.
 
 
-3. Copy `env.list.template` to `env.list` and update
+3. Copy `env.list.template` to `env.list` and update. Do: `set -a; . env.list`
 
 4. Start a container:
 
-    sudo docker run -t -i -p 8080:80 --env-file=env.list \
-    --restart="on-failure:10" --link beservices:beservices \
-    -h lamp1 --name lamp1 lamp /bin/bash -c "supervisord; export > /env; bash
+    docker run -t -i -p 8080:80 --restart="on-failure:10" \
+    --link beservices:beservices --env-file=env.list -h lamp1 --name lamp1 lamp \
+    /bin/bash -c "supervisord; export > /env; bash"
 
 5. Then start things up with: `supervisord`
 
@@ -24,6 +24,17 @@ Quick installation
 
 Login to MySQL using phpMyAdmin at:
 `http://localhost:PORT/phpMyAdmin-4.0.8-all-languages`
+
+
+Install apps
+------------
+
+Repos for apps should be cloned into `/apps`. It is handy to configure
+a machine account for git, see the
+[github guide](https://developer.github.com/guides/managing-deploy-keys/).
+Run `ssh -T git@github.com` from the container to validate that SSH has been
+configured correctly.
+
 
 
 Image backups

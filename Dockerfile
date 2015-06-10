@@ -8,7 +8,7 @@
 FROM     centos:6
 MAINTAINER Jonas Colmsjö "jonas@gizur.com"
 
-RUN yum install -y wget nano curl git unzip which
+RUN yum install -y wget nano curl git unzip which tar
 
 
 #
@@ -68,6 +68,8 @@ php-tidy phpmyadmin mysql mysql-server httpd libpng libpng-devel libjpeg \
 libjpeg-devel freetype freetype-devel zlib xFree86-dev openssl openssl-devel \
 krb5-devel imap-2004d
 
+# More modules
+yum install -y php-pear php-pecl-memcache php-pecl-redis php-common php-curl
 
 #
 # Install phpMyAdmin
@@ -105,18 +107,19 @@ ADD ./s3cfg /.s3cfg
 # Install cron and batches
 # ------------------------
 
+RUN yum install -y vixie-cron
+
 # Add batches here since it changes often (use cache when building)
 #ADD ./batches.py /
 ADD ./batches.sh /
-
 
 # Run backup job every hour
 ADD ./backup.sh /
 RUN echo '0 1 * * *  /bin/bash -c "/backup.sh"' > /mycron
 
+RUN crontab /mycron
 
-#RUN crontab /mycron
-
+# only used in ubuntu?
 #ADD ./etc-pam.d-cron /etc/pam.d/cron
 
 
