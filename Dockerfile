@@ -127,9 +127,8 @@ RUN crontab /mycron
 # Start apache and mysql using supervisord
 # -----------------------------------------
 
-# Fix permissions
-RUN chown -R apache:apache /var/www/html
 
+RUN mkdir /apps
 
 EXPOSE 80 443
 CMD ["supervisord"]
