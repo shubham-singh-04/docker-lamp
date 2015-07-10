@@ -1,6 +1,15 @@
 LAMP container
 =================
 
+Overview
+-------
+
+There are two branches:
+
+ * master - centos6
+ * centos7 
+
+
 
 Quick installation
 ------------------
