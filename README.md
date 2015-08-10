@@ -15,7 +15,7 @@ Quick installation
 4. Start a container:
 
     docker run -t -i -p 8080:80 --restart="on-failure:10" \
-    --link beservices:beservices --env-file=env.list -h lamp1 --name lamp1 lamp \
+    --link beservices:beservices -h lamp1 --name lamp1 lamp \
     /bin/bash -c "supervisord; export > /env; bash"
 
 5. Then start things up with: `supervisord`
