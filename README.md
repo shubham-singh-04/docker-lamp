@@ -45,6 +45,17 @@ Run `ssh -T git@github.com` from the container to validate that SSH has been
 configured correctly.
 
 
+MySQL backups
+-------------
+
+This should only be performed on one of the lamp containers.
+
+1. Check the backup script: `/backup.sh`
+2. Setup s3 credentials: `aws s3 configure`. Set default region to: `eu-west-1`  (old Setup S3 credentials: `s3cmd --configure`)
+3. Check the environment variables used
+4. Run the script manually
+5. Setup cron: `crontab -l`. Edit with: `crontab -e`
+
 
 Image backups
 -------------
