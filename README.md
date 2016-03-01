@@ -27,6 +27,13 @@ Quick installation
     --link beservices:beservices -h lamp1 --name lamp1 lamp \
     /bin/bash -c "supervisord; export > /env; bash"
 
+When using docker swarm:
+
+    docker run -ti --restart="on-failure:10" \
+    --net=net0 -h lamp1 --name lamp1 lamp \
+    /bin/bash -c "supervisord; export > /env; bash"
+
+
 5. Then start things up with: `supervisord`
 
 6. Check the log files: `docker logs lamp`
