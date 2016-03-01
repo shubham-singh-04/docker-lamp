@@ -29,7 +29,7 @@ Quick installation
 
 When using docker swarm:
 
-    docker run -ti --restart="on-failure:10" \
+    docker run -ti --restart="on-failure:10" --env-file=env.list \
     --net=net0 -h lamp1 --name lamp1 lamp \
     /bin/bash -c "supervisord; export > /env; bash"
 
