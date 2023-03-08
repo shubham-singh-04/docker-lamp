@@ -5,7 +5,7 @@
 # Logging is performed via syslog to a server named beservices
 #
 
-FROM     centos:6
+FROM     centos:centos8
 MAINTAINER Jonas Colmsjö "jonas@gizur.com"
 
 RUN yum install -y wget nano curl git unzip which tar gcc
